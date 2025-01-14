@@ -263,6 +263,8 @@ namespace _2048WindowsFormsApp
             ShowScore();
         }
 
+
+
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Restart();
@@ -271,6 +273,17 @@ namespace _2048WindowsFormsApp
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowGameRules();
+        }
+
+        private void ShowGameRules()
+        {
+            RulesForm form = new RulesForm();
+            form.ShowDialog();
         }
     }
 }
