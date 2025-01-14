@@ -49,7 +49,7 @@ namespace _2048WindowsFormsApp
 
         private void GenerateNumber()
         {
-            //make this method deterministic
+            Random rnd = new Random();
             while (true)
             {
                 var randomNumberLabel = random.Next(0, mapSize * mapSize);
@@ -57,21 +57,18 @@ namespace _2048WindowsFormsApp
                 var indexColumn = randomNumberLabel % mapSize;
                 if (labelsMap[indexRow, indexColumn].Text == string.Empty)
                 {
-                    //you need to randomly generate either 2 or 4
-                    labelsMap[indexRow, indexColumn].Text = GetRandomSeedNumber();
+                    int probability = rnd.Next(1, 101);
+                    if (probability <= 25)
+                    {
+                        labelsMap[indexRow, indexColumn].Text = "4";
+                    }
+                    else
+                    {
+                        labelsMap[indexRow, indexColumn].Text = "2";
+                    }
                     break;
                 }
             }
-        }
-
-        private string GetRandomSeedNumber()
-        {
-            Random rnd = new Random();
-            double probability = rnd.NextDouble();
-            if (probability < 25)
-                return "4";
-            else
-                return "2";
         }
 
         private Label CreateLabel(int indexRow, int indexColumn)
@@ -294,6 +291,17 @@ namespace _2048WindowsFormsApp
         {
             RulesForm form = new RulesForm();
             form.ShowDialog();
+        }
+
+        private void resultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowGameResults();
+        }
+
+        private void ShowGameResults()
+        {
+            ResultsForm resultsForm = new ResultsForm();
+            resultsForm.ShowDialog();
         }
     }
 }
