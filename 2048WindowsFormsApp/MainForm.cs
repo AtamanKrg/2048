@@ -58,10 +58,20 @@ namespace _2048WindowsFormsApp
                 if (labelsMap[indexRow, indexColumn].Text == string.Empty)
                 {
                     //you need to randomly generate either 2 or 4
-                    labelsMap[indexRow, indexColumn].Text = "2";
+                    labelsMap[indexRow, indexColumn].Text = GetRandomSeedNumber();
                     break;
                 }
             }
+        }
+
+        private string GetRandomSeedNumber()
+        {
+            Random rnd = new Random();
+            double probability = rnd.NextDouble();
+            if (probability < 25)
+                return "4";
+            else
+                return "2";
         }
 
         private Label CreateLabel(int indexRow, int indexColumn)
